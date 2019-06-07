@@ -8,8 +8,7 @@ defmodule PlusOneUpdoot.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: PlusOneUpdoot.Worker.start_link(arg)
-      # {PlusOneUpdoot.Worker, arg}
+      PlusOneUpdoot.Counter
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
