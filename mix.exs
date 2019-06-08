@@ -4,10 +4,12 @@ defmodule PlusOneUpdoot.MixProject do
   def project do
     [
       app: :plus_one_updoot,
-      version: "0.1.0",
+      deps: deps(),
+      description: description(),
       elixir: "~> 1.8",
+      package: package(),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      version: "0.1.0",
     ]
   end
 
@@ -19,11 +21,21 @@ defmodule PlusOneUpdoot.MixProject do
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
-  defp deps do
+  defp deps() do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      # Doc generator
+      {:ex_doc, ">= 0.0.0", only: :dev}
+    ]
+  end
+
+  defp description() do
+    "Generate incemental, unique items for testing (e.g. Foo0 -> Foo1 -> Foo2...)"
+  end
+
+  defp package() do
+    [
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/amorphid/plus_one_updoot-elixir"}
     ]
   end
 end

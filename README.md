@@ -1,6 +1,6 @@
 # PlusOneUpdoot
 
-**TODO: Add description**
+Generate incemental, unique items for testing purposes (e.g. Foo0 -> Foo1 -> Foo2...).
 
 ## Installation
 

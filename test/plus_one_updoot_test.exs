@@ -11,15 +11,17 @@ defmodule PlusOneUpdootTest do
       assert is_atom(fake_module0)
       # converting atom to string is required to avoid raising an error in test
       # an error is raise if the returned atom existed before function returns
-      assert "Elixir.FakeModule0" == Atom.to_string(fake_module0) 
-      assert "Elixir.FakeModule1" == 
-        FakeModule
-        |> PlusOneUpdoot.module!()
-        |> Atom.to_string()
-      assert "Elixir.FakeModule2" == 
-        FakeModule
-        |> PlusOneUpdoot.module!()
-        |> Atom.to_string()
+      assert "Elixir.FakeModule0" == Atom.to_string(fake_module0)
+
+      assert "Elixir.FakeModule1" ==
+               FakeModule
+               |> PlusOneUpdoot.module!()
+               |> Atom.to_string()
+
+      assert "Elixir.FakeModule2" ==
+               FakeModule
+               |> PlusOneUpdoot.module!()
+               |> Atom.to_string()
     end
 
     test "raises error when arg is already a module" do
@@ -30,18 +32,23 @@ defmodule PlusOneUpdootTest do
     end
 
     test "raises error when atom already exists" do
-      assert "Elixir.ExistingAtomModule0" == 
-        ExistingAtomModule
-        |> PlusOneUpdoot.module!()
-        |> Atom.to_string()
-      assert "Elixir.ExistingAtomModule1" == 
-        ExistingAtomModule
-        |> PlusOneUpdoot.module!()
-        |> Atom.to_string()
+      assert "Elixir.ExistingAtomModule0" ==
+               ExistingAtomModule
+               |> PlusOneUpdoot.module!()
+               |> Atom.to_string()
+
+      assert "Elixir.ExistingAtomModule1" ==
+               ExistingAtomModule
+               |> PlusOneUpdoot.module!()
+               |> Atom.to_string()
+
       # the next iteration of ExistingAtomModuleXXX is ExistingAtomModule2
       true = is_atom(ExistingAtomModule2)
       func = fn -> PlusOneUpdoot.module!(ExistingAtomModule) end
-      error = "ExistingAtomModule2 is an EXISTING ATOM.  Use better fake module to generate a NONEXISTENT ATOM."
+
+      error =
+        "ExistingAtomModule2 is an EXISTING ATOM.  Use better fake module to generate a NONEXISTENT ATOM."
+
       assert_raise PlusOneUpdootRuntimeError, error, func
     end
   end

@@ -2,7 +2,7 @@ defmodule PlusOneUpdoot.Counter do
   use Agent
 
   def start_link() do
-    start_link(:noarg)    
+    start_link(:noarg)
   end
 
   def start_link(_) do
@@ -11,11 +11,9 @@ defmodule PlusOneUpdoot.Counter do
 
   def increment_module!(base_module) when is_atom(base_module) do
     Agent.get_and_update(__MODULE__, fn %{} = data ->
-      with \
-        count <- get_or_initialize_count(data, base_module),
-        next_module_str <- concat_module_and_count(base_module, count),
-        {:ok, next_module} <- convert_module_str_to_module(next_module_str)
-      do
+      with count <- get_or_initialize_count(data, base_module),
+           next_module_str <- concat_module_and_count(base_module, count),
+           {:ok, next_module} <- convert_module_str_to_module(next_module_str) do
         {{:ok, next_module}, Map.put(data, base_module, count + 1)}
       else
         {:error, _reason} = error ->
@@ -27,19 +25,21 @@ defmodule PlusOneUpdoot.Counter do
   defp concat_module_and_count(module, count) do
     module
     |> Atom.to_string()
-    |> case do 
-      str -> 
+    |> case do
+      str ->
         str <> Integer.to_string(count)
     end
   end
 
   defp convert_module_str_to_module(next_module_str) do
     existing_atom = String.to_existing_atom(next_module_str)
-    {:error, "#{inspect(existing_atom)} is an EXISTING ATOM.  Use better fake module to generate a NONEXISTENT ATOM."}
-  rescue 
+
+    {:error,
+     "#{inspect(existing_atom)} is an EXISTING ATOM.  Use better fake module to generate a NONEXISTENT ATOM."}
+  rescue
     x ->
       case x do
-        %ArgumentError{message: "argument error"} -> 
+        %ArgumentError{message: "argument error"} ->
           {:ok, String.to_atom(next_module_str)}
       end
   end
