@@ -9,10 +9,20 @@ defmodule PlusOneUpdoot.Counter do
     Agent.start_link(fn -> %{} end, name: __MODULE__)
   end
 
+  def increment_atom!(base_atom) when is_atom(base_atom) do
+    Agent.get_and_update(__MODULE__, fn %{} = data ->
+      with count <- get_or_initialize_count(data, base_atom),
+        next_atom_str <- concat_atom_and_count(base_atom, count),
+        next_atom <- String.to_atom(next_atom_str) do
+        {next_atom, Map.put(data, base_atom, count + 1)}  
+      end
+    end)
+  end
+
   def increment_module!(base_module) when is_atom(base_module) do
     Agent.get_and_update(__MODULE__, fn %{} = data ->
       with count <- get_or_initialize_count(data, base_module),
-           next_module_str <- concat_module_and_count(base_module, count),
+           next_module_str <- concat_atom_and_count(base_module, count),
            {:ok, next_module} <- convert_module_str_to_module(next_module_str) do
         {{:ok, next_module}, Map.put(data, base_module, count + 1)}
       else
@@ -22,8 +32,8 @@ defmodule PlusOneUpdoot.Counter do
     end)
   end
 
-  defp concat_module_and_count(module, count) do
-    module
+  defp concat_atom_and_count(atom, count) do
+    atom
     |> Atom.to_string()
     |> case do
       str ->

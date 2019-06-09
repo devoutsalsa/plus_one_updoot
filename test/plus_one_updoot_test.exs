@@ -4,7 +4,30 @@ defmodule PlusOneUpdootTest do
 
   doctest PlusOneUpdoot
 
-  describe "&module!/1()" do
+  describe "&atom!/1" do
+    test "has a default" do
+      default = 
+        :attributes
+        |> PlusOneUpdoot.Atom.__info__()
+        |> Keyword.fetch!(:element)
+        |> case do 
+          [element] -> 
+            element
+        end
+      actual = PlusOneUpdoot.atom!()
+      expected = :"#{default}0"
+      assert actual == expected
+    end
+
+    test "iterates atoms" do
+      base_atom = :unobtanium
+      assert PlusOneUpdoot.atom!(base_atom) == :"#{base_atom}0"
+      assert PlusOneUpdoot.atom!(base_atom) == :"#{base_atom}1"
+      assert PlusOneUpdoot.atom!(base_atom) == :"#{base_atom}2"
+    end
+  end
+
+  describe "&module!/1" do
     test "iterates fake module names" do
       # FakeModule is also the default arg
       fake_module0 = PlusOneUpdoot.module!(FakeModule)
