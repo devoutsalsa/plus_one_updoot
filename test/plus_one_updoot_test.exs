@@ -6,14 +6,15 @@ defmodule PlusOneUpdootTest do
 
   describe "&atom!/1" do
     test "has a default" do
-      default = 
+      default =
         :attributes
         |> PlusOneUpdoot.Atom.__info__()
         |> Keyword.fetch!(:element)
-        |> case do 
-          [element] -> 
+        |> case do
+          [element] ->
             element
         end
+
       actual = PlusOneUpdoot.atom!()
       expected = :"#{default}0"
       assert actual == expected

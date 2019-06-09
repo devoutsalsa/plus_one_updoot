@@ -128,5 +128,5 @@ defmodule PlusOneUpdoot.Atom do
 
   def increment!(arg \\ @element) when is_atom(arg) do
     Counter.increment_atom!(arg)
-  end 
+  end
 end

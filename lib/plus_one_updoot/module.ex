@@ -1,7 +1,7 @@
 defmodule PlusOneUpdoot.Module do
   alias PlusOneUpdoot.Counter
   alias PlusOneUpdoot.RuntimeError, as: PlusOneUpdootRuntimeError
-  
+
   def increment!(fake_module \\ FakeModule) when is_atom(fake_module) do
     try do
       [_ | _] = fake_module.module_info()

@@ -12,9 +12,9 @@ defmodule PlusOneUpdoot.Counter do
   def increment_atom!(base_atom) when is_atom(base_atom) do
     Agent.get_and_update(__MODULE__, fn %{} = data ->
       with count <- get_or_initialize_count(data, base_atom),
-        next_atom_str <- concat_atom_and_count(base_atom, count),
-        next_atom <- String.to_atom(next_atom_str) do
-        {next_atom, Map.put(data, base_atom, count + 1)}  
+           next_atom_str <- concat_atom_and_count(base_atom, count),
+           next_atom <- String.to_atom(next_atom_str) do
+        {next_atom, Map.put(data, base_atom, count + 1)}
       end
     end)
   end
