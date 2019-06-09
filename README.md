@@ -1,5 +1,7 @@
 # PlusOneUpdoot
 
+<img src="https://i.imgur.com/23YyM4E.gif" alt="Mr. Skeltal" />
+
 Generate incemental, unique items for testing purposes (e.g. Foo0 -> Foo1 -> Foo2...).
 
 ## Installation
@@ -19,3 +21,6 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/plus_one_updoot](https://hexdocs.pm/plus_one_updoot).
 
+## Acknowledgements 
+
+- Thank you Mr. Skeltal for all of your inspiration & support

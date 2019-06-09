@@ -7,3 +7,4 @@
 # v0.2.0
 
 - Add atoms
+- Thanked Mr. Skeltal for strong calcium and bones
