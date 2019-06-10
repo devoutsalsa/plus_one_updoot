@@ -28,6 +28,24 @@ defmodule PlusOneUpdootTest do
     end
   end
 
+  describe "&email!/1" do
+    test "has a default" do
+      default = %PlusOneUpdoot.Email{}
+      actual = PlusOneUpdoot.email!()
+      expected = default.local_part <> "0" <> "@" <> default.domain
+      assert actual == expected
+    end
+
+    test "iterates emails" do
+      local_part = "jorge-"
+      domain = "mctacobox.com"
+      base_email = %PlusOneUpdoot.Email{local_part: local_part, domain: domain}
+      assert PlusOneUpdoot.email!(base_email) == "#{local_part}0@#{domain}"
+      assert PlusOneUpdoot.email!(base_email) == "#{local_part}1@#{domain}"
+      assert PlusOneUpdoot.email!(base_email) == "#{local_part}2@#{domain}"
+    end
+  end
+
   describe "&module!/1" do
     test "iterates fake module names" do
       # FakeModule is also the default arg
