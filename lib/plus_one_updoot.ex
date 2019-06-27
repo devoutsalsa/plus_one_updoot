@@ -2,6 +2,7 @@ defmodule PlusOneUpdoot do
   alias PlusOneUpdoot.Atom, as: PlusOneUpdootAtom
   alias PlusOneUpdoot.Email, as: PlusOneUpdootEmail
   alias PlusOneUpdoot.Module, as: PlusOneUpdootModule
+  alias PlusOneUpdoot.String, as: PlusOneUpdootString
 
   defdelegate atom!(), to: PlusOneUpdootAtom, as: :increment!
 
@@ -14,4 +15,8 @@ defmodule PlusOneUpdoot do
   defdelegate module!(), to: PlusOneUpdootModule, as: :increment!
 
   defdelegate module!(arg), to: PlusOneUpdootModule, as: :increment!
+
+  defdelegate string!(), to: PlusOneUpdootString, as: :increment!
+
+  defdelegate string!(arg), to: PlusOneUpdootString, as: :increment!
 end

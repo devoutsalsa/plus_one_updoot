@@ -46,6 +46,16 @@ defmodule PlusOneUpdoot.Counter do
     end)
   end
 
+  def increment_string!(base_string) when is_binary(base_string) do
+    Agent.get_and_update(__MODULE__, fn %{} = data ->
+      with count <- get_or_initialize_count(data, base_string),
+           next_string <- concat_binary_and_count(base_string, count),
+           next_data <- Map.put(data, base_string, count + 1) do
+        {next_string, next_data}
+      end
+    end)
+  end
+
   defp concat_binary_and_count(binary, count) when is_binary(binary) do
     binary <> Integer.to_string(count)
   end

@@ -6,15 +6,7 @@ defmodule PlusOneUpdootTest do
 
   describe "&atom!/1" do
     test "has a default" do
-      default =
-        :attributes
-        |> PlusOneUpdoot.Atom.__info__()
-        |> Keyword.fetch!(:element)
-        |> case do
-          [element] ->
-            element
-        end
-
+      default = :totes_unique_atom_i_swear
       actual = PlusOneUpdoot.atom!()
       expected = :"#{default}0"
       assert actual == expected
@@ -84,7 +76,6 @@ defmodule PlusOneUpdootTest do
                |> PlusOneUpdoot.module!()
                |> Atom.to_string()
 
-      # the next iteration of ExistingAtomModuleXXX is ExistingAtomModule2
       true = is_atom(ExistingAtomModule2)
       func = fn -> PlusOneUpdoot.module!(ExistingAtomModule) end
 
@@ -92,6 +83,23 @@ defmodule PlusOneUpdootTest do
         "ExistingAtomModule2 is an EXISTING ATOM.  Use better fake module to generate a NONEXISTENT ATOM."
 
       assert_raise PlusOneUpdootRuntimeError, error, func
+    end
+  end
+
+  describe "&string!/1" do
+    test "has a default" do
+      default = "absolutely-the-most-amazing-default-string-of-all-time"
+      actual = PlusOneUpdoot.string!()
+      expected = default <> "0"
+      assert actual == expected
+    end
+
+    test "iterates strings" do
+      boring_string = "my-test-string-could-be-4-times-more-clever"
+      base_string = boring_string <> "-clever-clever-clever"
+      assert PlusOneUpdoot.string!(base_string) == base_string <> "0"
+      assert PlusOneUpdoot.string!(base_string) == base_string <> "1"
+      assert PlusOneUpdoot.string!(base_string) == base_string <> "2"
     end
   end
 end
