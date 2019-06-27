@@ -12,7 +12,7 @@ by adding `plus_one_updoot` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:plus_one_updoot, "~> 0.2.0"}
+    {:plus_one_updoot, "~> 0.3.0"}
   ]
 end
 ```

@@ -1,6 +1,6 @@
 # Changelog
 
-# v?.?.?
+# v0.3.0
 
 - Add strings
 - Change default base from random to static
