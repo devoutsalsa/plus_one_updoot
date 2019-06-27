@@ -29,7 +29,7 @@ defmodule PlusOneUpdoot.MixProject do
   end
 
   defp description() do
-    "Generate incemental, unique items for testing (e.g. Foo0 -> Foo1 -> Foo2...)"
+    "Generate fake, incemental, unique values for testing (e.g. Foo0 -> Foo1 -> Foo2...)"
   end
 
   defp package() do

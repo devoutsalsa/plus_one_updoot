@@ -2,7 +2,7 @@
 
 <img src="https://i.imgur.com/23YyM4E.gif" alt="Mr. Skeltal" />
 
-Generate incemental, unique items for testing purposes (e.g. Foo0 -> Foo1 -> Foo2...).
+Generate fake, incemental, unique values for testing (e.g. Foo0 -> Foo1 -> Foo2...).
 
 ## Installation
 
