@@ -21,7 +21,8 @@ defmodule PlusOneUpdoot.Counter do
     end)
   end
 
-  def increment_email!(%Email{domain: domain, local_part: local_part} = base_email) when is_binary(domain) and is_binary(local_part) do
+  def increment_email!(%Email{domain: domain, local_part: local_part} = base_email)
+      when is_binary(domain) and is_binary(local_part) do
     Agent.get_and_update(__MODULE__, fn %{} = data ->
       with count <- get_or_initialize_count(data, base_email),
            next_local_part <- concat_binary_and_count(local_part, count),
@@ -37,7 +38,7 @@ defmodule PlusOneUpdoot.Counter do
       with count <- get_or_initialize_count(data, base_module),
            next_module_str <- concat_atom_and_count(base_module, count),
            {:ok, next_module} <- convert_module_str_to_module(next_module_str),
-          next_data <- Map.put(data, base_module, count + 1) do
+           next_data <- Map.put(data, base_module, count + 1) do
         {{:ok, next_module}, next_data}
       else
         {:error, _reason} = error ->
