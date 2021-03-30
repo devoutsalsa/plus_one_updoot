@@ -33,6 +33,15 @@ defmodule PlusOneUpdoot.Counter do
     end)
   end
 
+  def increment_integer!() do
+    Agent.get_and_update(__MODULE__, fn %{} = data ->
+      with count <- get_or_initialize_count(data, 0),
+           next_data <- Map.put(data, 0, count + 1) do
+        {count, next_data}
+      end
+    end)
+  end
+
   def increment_module!(base_module) when is_atom(base_module) do
     Agent.get_and_update(__MODULE__, fn %{} = data ->
       with count <- get_or_initialize_count(data, base_module),

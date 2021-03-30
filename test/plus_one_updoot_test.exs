@@ -38,6 +38,14 @@ defmodule PlusOneUpdootTest do
     end
   end
 
+  describe "&integer!/0" do
+    test "iterates integers" do
+      assert PlusOneUpdoot.integer!() == 0
+      assert PlusOneUpdoot.integer!() == 1
+      assert PlusOneUpdoot.integer!() == 2
+    end
+  end
+
   describe "&module!/1" do
     test "iterates fake module names" do
       # FakeModule is also the default arg
