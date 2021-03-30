@@ -20,6 +20,21 @@ defmodule PlusOneUpdootTest do
     end
   end
 
+  describe "&date!/1" do
+    test "has a default" do
+      actual = PlusOneUpdoot.date!()
+      expected = ~D[2000-01-01]
+      assert actual == expected
+    end
+
+    test "iterates dates" do
+      base_atom = ~D[2004-01-01]
+      assert PlusOneUpdoot.date!(base_atom) == ~D[2004-01-01]
+      assert PlusOneUpdoot.date!(base_atom) == ~D[2004-01-02]
+      assert PlusOneUpdoot.date!(base_atom) == ~D[2004-01-03]
+    end
+  end
+
   describe "&email!/1" do
     test "has a default" do
       default = %PlusOneUpdoot.Email{}

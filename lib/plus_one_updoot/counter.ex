@@ -21,6 +21,16 @@ defmodule PlusOneUpdoot.Counter do
     end)
   end
 
+  def increment_date!(base_date) do
+    Agent.get_and_update(__MODULE__, fn %{} = data ->
+      with count <- get_or_initialize_count(data, base_date),
+           next_date <- Date.add(base_date, count),
+           next_data <- Map.put(data, base_date, count + 1) do
+        {next_date, next_data}
+      end
+    end)
+  end
+
   def increment_email!(%Email{domain: domain, local_part: local_part} = base_email)
       when is_binary(domain) and is_binary(local_part) do
     Agent.get_and_update(__MODULE__, fn %{} = data ->
