@@ -28,10 +28,10 @@ defmodule PlusOneUpdootTest do
     end
 
     test "iterates dates" do
-      base_atom = ~D[2004-01-01]
-      assert PlusOneUpdoot.date!(base_atom) == ~D[2004-01-01]
-      assert PlusOneUpdoot.date!(base_atom) == ~D[2004-01-02]
-      assert PlusOneUpdoot.date!(base_atom) == ~D[2004-01-03]
+      base_date = ~D[2004-01-01]
+      assert PlusOneUpdoot.date!(base_date) == ~D[2004-01-01]
+      assert PlusOneUpdoot.date!(base_date) == ~D[2004-01-02]
+      assert PlusOneUpdoot.date!(base_date) == ~D[2004-01-03]
     end
   end
 
