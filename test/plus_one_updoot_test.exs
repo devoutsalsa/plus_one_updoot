@@ -109,6 +109,21 @@ defmodule PlusOneUpdootTest do
     end
   end
 
+  describe "&naive_datetime!/1" do
+    test "has a default" do
+      actual = PlusOneUpdoot.naive_datetime!()
+      expected = ~N[2000-01-01 00:00:00.000000]
+      assert actual == expected
+    end
+
+    test "iterates dates" do
+      base_naive_datetime = ~N[2020-01-01 00:00:00.000123]
+      assert PlusOneUpdoot.naive_datetime!(base_naive_datetime) == ~N[2020-01-01 00:00:00.000123]
+      assert PlusOneUpdoot.naive_datetime!(base_naive_datetime) == ~N[2020-01-01 00:00:00.000124]
+      assert PlusOneUpdoot.naive_datetime!(base_naive_datetime) == ~N[2020-01-01 00:00:00.000125]
+    end
+  end
+
   describe "&string!/1" do
     test "has a default" do
       default = "absolutely-the-most-amazing-default-string-of-all-time"

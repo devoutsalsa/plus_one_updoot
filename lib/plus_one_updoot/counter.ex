@@ -46,7 +46,7 @@ defmodule PlusOneUpdoot.Counter do
   def increment_integer!() do
     Agent.get_and_update(__MODULE__, fn %{} = data ->
       with count <- get_or_initialize_count(data, 0),
-           next_data <- Map.put(data, 0, count + 1) do
+           next_data <- Map.put(data, 0, count + 1)  do
         {count, next_data}
       end
     end)
@@ -62,6 +62,16 @@ defmodule PlusOneUpdoot.Counter do
       else
         {:error, _reason} = error ->
           {error, data}
+      end
+    end)
+  end
+
+  def increment_naive_datetime!(base_naive_datetime) do
+    Agent.get_and_update(__MODULE__, fn %{} = data ->
+      with count <- get_or_initialize_count(data, base_naive_datetime),
+           next_naive_datetime <- NaiveDateTime.add(base_naive_datetime, count, :microsecond),
+           next_data <- Map.put(data, base_naive_datetime, count + 1) do
+        {next_naive_datetime, next_data}
       end
     end)
   end

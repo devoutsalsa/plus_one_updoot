@@ -4,6 +4,7 @@ defmodule PlusOneUpdoot do
   alias PlusOneUpdoot.Email, as: PlusOneUpdootEmail
   alias PlusOneUpdoot.Integer, as: PlusOneUpdootInteger
   alias PlusOneUpdoot.Module, as: PlusOneUpdootModule
+  alias PlusOneUpdoot.NaiveDateTime, as: PlusOneUpdootNaiveDateTime
   alias PlusOneUpdoot.String, as: PlusOneUpdootString
 
   defdelegate atom!(), to: PlusOneUpdootAtom, as: :increment!
@@ -23,6 +24,10 @@ defmodule PlusOneUpdoot do
   defdelegate module!(), to: PlusOneUpdootModule, as: :increment!
 
   defdelegate module!(arg), to: PlusOneUpdootModule, as: :increment!
+
+  defdelegate naive_datetime!(), to: PlusOneUpdootNaiveDateTime, as: :increment!
+
+  defdelegate naive_datetime!(arg), to: PlusOneUpdootNaiveDateTime, as: :increment!
 
   defdelegate string!(), to: PlusOneUpdootString, as: :increment!
 
