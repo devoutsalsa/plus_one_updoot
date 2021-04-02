@@ -53,11 +53,17 @@ defmodule PlusOneUpdootTest do
     end
   end
 
-  describe "&integer!/0" do
+  describe "&integer!/1" do
+    test "has a default" do
+      actual = PlusOneUpdoot.integer!()
+      expected = 0
+      assert actual == expected
+    end
+
     test "iterates integers" do
-      assert PlusOneUpdoot.integer!() == 0
-      assert PlusOneUpdoot.integer!() == 1
-      assert PlusOneUpdoot.integer!() == 2
+      assert PlusOneUpdoot.integer!(8) == 8
+      assert PlusOneUpdoot.integer!(8) == 9
+      assert PlusOneUpdoot.integer!(8) == 10
     end
   end
 

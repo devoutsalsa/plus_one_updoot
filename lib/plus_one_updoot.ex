@@ -21,6 +21,8 @@ defmodule PlusOneUpdoot do
 
   defdelegate integer!(), to: PlusOneUpdootInteger, as: :increment!
 
+  defdelegate integer!(arg), to: PlusOneUpdootInteger, as: :increment!
+
   defdelegate module!(), to: PlusOneUpdootModule, as: :increment!
 
   defdelegate module!(arg), to: PlusOneUpdootModule, as: :increment!
