@@ -47,7 +47,7 @@ defmodule PlusOneUpdoot.Counter do
     Agent.get_and_update(__MODULE__, fn %{} = data ->
       with count <- get_or_initialize_count(data, base_integer),
            next_count <- base_integer + count,
-           next_data <- Map.put(data, base_integer, count + 1)  do
+           next_data <- Map.put(data, base_integer, count + 1) do
         {next_count, next_data}
       end
     end)
